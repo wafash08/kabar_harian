@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "673036457604",
+    "project_id": "kabar-harian-c94f0",
+    "storage_bucket": "kabar-harian-c94f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673036457604:android:32a7f0ed5e8b39352f94d1",
+        "android_client_info": {
+          "package_name": "com.kabar_harian.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvzy0Qg9k1D2VS_K80ZIDOiL0kbrL2hs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673036457604:android:6255584292df03962f94d1",
+        "android_client_info": {
+          "package_name": "com.wafash.kabar_harian.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvzy0Qg9k1D2VS_K80ZIDOiL0kbrL2hs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
