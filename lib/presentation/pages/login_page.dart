@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kabar_harian/data/dummies/dummy_authentication.dart';
 import 'package:kabar_harian/data/dummies/dummy_user_repository.dart';
+import 'package:kabar_harian/data/firebase/firebase_authentication.dart';
+import 'package:kabar_harian/data/firebase/firebase_user_repository.dart';
+import 'package:kabar_harian/data/repositories/user_repository.dart';
 import 'package:kabar_harian/domain/usecases/login.dart';
 import 'package:kabar_harian/presentation/pages/main_page.dart';
 
@@ -17,10 +19,10 @@ class LoginPage extends StatelessWidget {
         child: ElevatedButton(
             onPressed: () {
               Login login = Login(
-                  authentication: DummyAuthentication(),
-                  userRepository: DummyUserRepository());
+                  authentication: FirebaseAuthentication(),
+                  userRepository: FirebaseUserRepository());
 
-              login(LoginParams(email: 'email@gmail.com', password: 'password'))
+              login(LoginParams(email: 'wafa@gmail.com', password: '123456'))
                   .then(
                 (value) {
                   if (value.isSuccess) {
