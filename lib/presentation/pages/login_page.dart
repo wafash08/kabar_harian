@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:kabar_harian/data/dummies/dummy_user_repository.dart';
-import 'package:kabar_harian/data/firebase/firebase_authentication.dart';
-import 'package:kabar_harian/data/firebase/firebase_user_repository.dart';
-import 'package:kabar_harian/data/repositories/user_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kabar_harian/domain/usecases/login.dart';
 import 'package:kabar_harian/presentation/pages/main_page.dart';
+import 'package:kabar_harian/presentation/providers/usecases/login_provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login Page'),
@@ -18,9 +16,7 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
             onPressed: () {
-              Login login = Login(
-                  authentication: FirebaseAuthentication(),
-                  userRepository: FirebaseUserRepository());
+              Login login = ref.watch(loginProvider);
 
               login(LoginParams(email: 'wafa@gmail.com', password: '123456'))
                   .then(
