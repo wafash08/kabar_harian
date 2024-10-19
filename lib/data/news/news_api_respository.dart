@@ -10,7 +10,7 @@ class NewsApiRespository implements NewsRepository {
   NewsApiRespository({Dio? dio}) : _dio = dio ?? Dio();
 
   @override
-  Future<Result<List<News>>> getAllNews({query = ''}) async {
+  Future<Result<List<News>>> getAllNews({String query = ''}) async {
     try {
       final response = await _dio!.get(
           'https://newsapi.org/v2/everything?q=$query&apiKey=$_accessToken');
