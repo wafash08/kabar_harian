@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kabar_harian/domain/usecases/login.dart';
-import 'package:kabar_harian/presentation/pages/main_page.dart';
-import 'package:kabar_harian/presentation/providers/usecases/login_provider.dart';
+import 'package:kabar_harian/presentation/providers/router/router_provider.dart';
+import 'package:kabar_harian/presentation/providers/user_data/user_data_provider.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      userDataProvider,
+      (previous, next) {
+        if (next is AsyncData) {
+          if (next.value != null) {
+            ref.read(routerProvider).goNamed('main');
+          }
+        } else if (next is AsyncError) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(next.error.toString())));
+        }
+      },
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login Page'),
@@ -16,27 +29,9 @@ class LoginPage extends ConsumerWidget {
       body: Center(
         child: ElevatedButton(
             onPressed: () {
-              Login login = ref.watch(loginProvider);
-
-              login(LoginParams(email: 'wafa@gmail.com', password: '123456'))
-                  .then(
-                (value) {
-                  if (value.isSuccess) {
-                    if (context.mounted) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) {
-                          return MainPage(user: value.resultValue!);
-                        },
-                      ));
-                    }
-                  } else {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(value.errorMessage!)));
-                    }
-                  }
-                },
-              );
+              ref
+                  .read(userDataProvider.notifier)
+                  .login(email: 'wafa@gmail.com', password: '123456');
             },
             child: const Text('Login')),
       ),
