@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kabar_harian/presentation/misc/methods.dart';
 import 'package:kabar_harian/presentation/providers/router/router_provider.dart';
 import 'package:kabar_harian/presentation/providers/user_data/user_data_provider.dart';
 
@@ -34,6 +35,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                   error: (error, stackTrace) => '',
                   loading: () => 'Loading...',
                 )),
+            verticalSpace(32.0),
             ElevatedButton(
                 onPressed: () {
                   ref.read(userDataProvider.notifier).logout();
