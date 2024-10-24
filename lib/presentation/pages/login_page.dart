@@ -59,8 +59,8 @@ class LoginPage extends ConsumerWidget {
                 ),
                 verticalSpace(24),
                 Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 32.0),
+                    padding: const EdgeInsets.only(
+                        left: 20, right: 20, top: 32, bottom: 8),
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         boxShadow: [
@@ -99,7 +99,7 @@ class LoginPage extends ConsumerWidget {
                         verticalSpace(32.0),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.all(16),
+                                padding: const EdgeInsets.all(20.0),
                                 backgroundColor: Colors.purple,
                                 shape: const RoundedRectangleBorder(
                                     borderRadius:
@@ -113,6 +113,28 @@ class LoginPage extends ConsumerWidget {
                               style: TextStyle(
                                   color: Colors.white, fontSize: 16.0),
                             )),
+                        verticalSpace(32.0),
+                        Container(
+                          height: 56,
+                          decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(4))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('New to KabarHarian?'),
+                              horizontalSpace(4.0),
+                              GestureDetector(
+                                child: Text(
+                                  'Create account',
+                                  style: TextStyle(
+                                      color: Colors.blueAccent.shade700),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
                       ],
                     )),
               ],
