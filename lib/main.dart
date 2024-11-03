@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kabar_harian/firebase_options.dart';
 import 'package:kabar_harian/presentation/providers/router/router_provider.dart';
+import 'package:kabar_harian/presentation/styles/styles.dart';
 
 void main() async {
   await Firebase.initializeApp(
@@ -27,3 +28,6 @@ class MainApp extends ConsumerWidget {
     );
   }
 }
+
+/// Global helper for readability
+AppStyle get $styles => AppStyle();

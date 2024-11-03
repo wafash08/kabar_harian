@@ -9,8 +9,8 @@ import 'package:kabar_harian/presentation/widgets/kh_button.dart';
 import 'package:kabar_harian/presentation/widgets/kh_logo.dart';
 import 'package:kabar_harian/presentation/widgets/kh_text_field.dart';
 
-class LoginPage extends ConsumerWidget {
-  const LoginPage({super.key});
+class RegisterPage extends ConsumerWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -50,7 +50,7 @@ class LoginPage extends ConsumerWidget {
                           style: BorderStyle.solid))),
             ),
 
-            // form login
+            // register form
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -77,8 +77,9 @@ class LoginPage extends ConsumerWidget {
                         borderRadius: BorderRadius.all(
                             Radius.circular($styles.corners.md))),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        _LoginForm(),
+                        _RegisterForm(),
                         verticalSpace(32.0),
                         Container(
                           height: 56,
@@ -90,16 +91,16 @@ class LoginPage extends ConsumerWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('New to KabarHarian?'),
+                              const Text('Already have an account?'),
                               horizontalSpace(4.0),
                               GestureDetector(
                                 onTap: () {
                                   ref
                                       .read(routerProvider)
-                                      .goNamed(ScreenPaths.namedRegister);
+                                      .goNamed(ScreenPaths.namedLogin);
                                 },
                                 child: Text(
-                                  'Create account',
+                                  'Sign in',
                                   style: TextStyle(
                                       color: Colors.blueAccent.shade700),
                                 ),
@@ -118,7 +119,8 @@ class LoginPage extends ConsumerWidget {
   }
 }
 
-class _LoginForm extends ConsumerWidget {
+class _RegisterForm extends ConsumerWidget {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -132,11 +134,16 @@ class _LoginForm extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Sign in to your account',
+              'Create your KabarHarian account',
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   letterSpacing: -1.0),
+            ),
+            verticalSpace(20),
+            KHTextField(
+              controller: _nameController,
+              label: 'Name',
             ),
             verticalSpace(20),
             KHTextField(
@@ -153,16 +160,19 @@ class _LoginForm extends ConsumerWidget {
             SizedBox(
               width: double.infinity,
               child: KHButton(
-                  semanticLabel: 'Sign in',
+                  semanticLabel: 'Create account',
                   padding: EdgeInsets.all($styles.insets.md),
                   expand: true,
                   onPressed: () {
-                    ref.read(userDataProvider.notifier).login(
-                        email: _emailController.text,
-                        password: _passwordController.text);
+                    ref.read(userDataProvider.notifier).register(
+                          name: _nameController.text,
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                          imageUrl: null,
+                        );
                   },
                   child: const Text(
-                    'Sign in',
+                    'Create account',
                     style: TextStyle(color: Colors.white, fontSize: 16.0),
                   )),
             ),

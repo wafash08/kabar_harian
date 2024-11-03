@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kabar_harian/domain/constants.dart';
 import 'package:kabar_harian/presentation/misc/methods.dart';
 import 'package:kabar_harian/presentation/providers/router/router_provider.dart';
 import 'package:kabar_harian/presentation/providers/user_data/user_data_provider.dart';
@@ -18,7 +19,7 @@ class _MainPageState extends ConsumerState<MainPage> {
       userDataProvider,
       (previous, next) {
         if (previous != null && next is AsyncData && next.value == null) {
-          ref.read(routerProvider).goNamed('login');
+          ref.read(routerProvider).goNamed(ScreenPaths.namedLogin);
         }
       },
     );
